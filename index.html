@@ -49,8 +49,11 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  body[data-lang="en"] [lang="ro"] { display: none; }
-  body[data-lang="ro"] [lang="en"] { display: none; }
+  /* Show only the active language */
+  body[data-lang="en"] :is([lang="ro"], [lang="it"], [lang="es"]) { display: none; }
+  body[data-lang="ro"] :is([lang="en"], [lang="it"], [lang="es"]) { display: none; }
+  body[data-lang="it"] :is([lang="en"], [lang="ro"], [lang="es"]) { display: none; }
+  body[data-lang="es"] :is([lang="en"], [lang="ro"], [lang="it"]) { display: none; }
 
   .cosmic-bg {
     position: fixed;
@@ -142,12 +145,12 @@
   .lang-toggle {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.3rem;
     font-family: var(--mono);
     font-size: 0.7rem;
     letter-spacing: 0.1em;
     color: var(--text-faint);
-    padding: 0 0.5rem;
+    padding: 0 0.4rem;
   }
 
   .lang-toggle button {
@@ -168,6 +171,7 @@
 
   @media (max-width: 768px) {
     .nav-links > a:not(.btn) { display: none; }
+    .lang-toggle { padding: 0; font-size: 0.65rem; gap: 0.2rem; }
   }
 
   .btn {
@@ -603,6 +607,214 @@
 
   .footer-links a:hover { color: var(--gold); }
 
+  /* Phone frame */
+  .phone-frame {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 9 / 19.5;
+    border-radius: 44px;
+    padding: 10px;
+    background: linear-gradient(145deg, rgba(212, 164, 76, 0.25), rgba(6, 11, 24, 0.9) 40%);
+    box-shadow:
+      0 50px 100px -20px rgba(0, 0, 0, 0.9),
+      0 0 40px rgba(212, 164, 76, 0.08),
+      inset 0 0 0 1px rgba(212, 164, 76, 0.2);
+    margin: 0 auto;
+  }
+
+  .phone-frame::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
+    z-index: 2;
+  }
+
+  .phone-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 36px;
+    display: block;
+  }
+
+  /* Hero 2-col layout */
+  .hero .container {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-visual {
+    opacity: 0;
+    animation: fadeUp 1.2s 1s ease-out forwards;
+  }
+
+  @media (max-width: 900px) {
+    .hero .container { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-visual { max-width: 240px; margin: 0 auto; }
+  }
+
+  /* Gallery */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 5rem;
+  }
+
+  @media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
+  @media (max-width: 560px) { .gallery { grid-template-columns: 1fr; gap: 3rem; max-width: 280px; margin-left: auto; margin-right: auto; } }
+
+  .gallery-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .gallery-item .phone-frame {
+    max-width: 100%;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .gallery-item:hover .phone-frame {
+    transform: translateY(-6px);
+  }
+
+  .gallery-caption {
+    text-align: center;
+  }
+
+  .gallery-caption h4 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .gallery-caption p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* Spotlights — feature-by-feature with screenshots */
+  .spotlight { padding: 7rem 0; border-top: 1px solid var(--border-soft); }
+  .spotlight:first-of-type { border-top: none; }
+
+  .spotlight .container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .spotlight.img-right .spotlight-visual { order: 2; }
+
+  .spotlight-text .section-eyebrow { margin-bottom: 1rem; }
+
+  .spotlight-text h3 {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+
+  .spotlight-text h3 em { font-style: italic; color: var(--gold); }
+
+  .spotlight-text p {
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 44ch;
+  }
+
+  .spotlight-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 520px;
+  }
+
+  .spotlight-visual .phone-frame { max-width: 280px; }
+
+  /* Dual phone composition */
+  .spotlight-visual.dual .phone-frame {
+    position: absolute;
+    max-width: 220px;
+  }
+  .spotlight-visual.dual .phone-frame:nth-child(1) {
+    transform: translate(-45%, -2%) rotate(-6deg);
+    z-index: 1;
+    opacity: 0.85;
+  }
+  .spotlight-visual.dual .phone-frame:nth-child(2) {
+    transform: translate(35%, 4%) rotate(5deg);
+    z-index: 2;
+  }
+
+  /* Triple phone composition */
+  .spotlight-visual.triple .phone-frame {
+    position: absolute;
+    max-width: 200px;
+  }
+  .spotlight-visual.triple .phone-frame:nth-child(1) {
+    transform: translate(-60%, -3%) rotate(-9deg);
+    z-index: 1;
+    opacity: 0.7;
+  }
+  .spotlight-visual.triple .phone-frame:nth-child(2) {
+    transform: translate(0, 3%) rotate(0deg);
+    z-index: 3;
+  }
+  .spotlight-visual.triple .phone-frame:nth-child(3) {
+    transform: translate(60%, -3%) rotate(9deg);
+    z-index: 2;
+    opacity: 0.75;
+  }
+
+  @media (max-width: 900px) {
+    .spotlight { padding: 4rem 0; }
+    .spotlight .container { grid-template-columns: 1fr; gap: 3rem; }
+    .spotlight.img-right .spotlight-visual { order: 0; }
+    .spotlight-visual { min-height: auto; }
+    .spotlight-visual .phone-frame { max-width: 240px; }
+
+    .spotlight-visual.dual { flex-direction: row; gap: 1rem; min-height: auto; }
+    .spotlight-visual.dual .phone-frame {
+      position: static;
+      transform: none;
+      max-width: 160px;
+      opacity: 1;
+    }
+    .spotlight-visual.dual .phone-frame:nth-child(1) { transform: rotate(-4deg); }
+    .spotlight-visual.dual .phone-frame:nth-child(2) { transform: rotate(4deg); }
+
+    .spotlight-visual.triple { min-height: auto; }
+    .spotlight-visual.triple .phone-frame:nth-child(1),
+    .spotlight-visual.triple .phone-frame:nth-child(3) { display: none; }
+    .spotlight-visual.triple .phone-frame:nth-child(2) {
+      position: static;
+      transform: none;
+      max-width: 240px;
+    }
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -642,16 +854,20 @@
   <div class="container">
     <a href="#" class="logo"><span class="logo-dot"></span>Osyren</a>
     <div class="nav-links">
-      <a href="#features"><span lang="en">Features</span><span lang="ro">Funcții</span></a>
-      <a href="#how"><span lang="en">How it works</span><span lang="ro">Cum funcționează</span></a>
-      <a href="#why"><span lang="en">Why Osyren</span><span lang="ro">De ce Osyren</span></a>
+      <a href="#features"><span lang="en">Features</span><span lang="ro">Funcții</span><span lang="it">Funzionalità</span><span lang="es">Funciones</span></a>
+      <a href="#how"><span lang="en">How it works</span><span lang="ro">Cum funcționează</span><span lang="it">Come funziona</span><span lang="es">Cómo funciona</span></a>
+      <a href="#why"><span lang="en">Why Osyren</span><span lang="ro">De ce Osyren</span><span lang="it">Perché Osyren</span><span lang="es">Por qué Osyren</span></a>
       <div class="lang-toggle">
         <button id="lang-en" class="active">EN</button>
         <span class="sep">/</span>
         <button id="lang-ro">RO</button>
+        <span class="sep">/</span>
+        <button id="lang-it">IT</button>
+        <span class="sep">/</span>
+        <button id="lang-es">ES</button>
       </div>
       <a href="#start" class="btn btn-ghost">
-        <span lang="en">Start free</span><span lang="ro">Începe gratuit</span>
+        <span lang="en">Start free</span><span lang="ro">Începe gratuit</span><span lang="it">Inizia gratis</span><span lang="es">Empieza gratis</span>
         <span class="btn-arrow">→</span>
       </a>
     </div>
@@ -660,33 +876,48 @@
 
 <header class="hero">
   <div class="container">
+    <div class="hero-text">
     <div class="hero-eyebrow">
       <span lang="en">Personal assistant · AI</span>
       <span lang="ro">Asistent personal · AI</span>
+      <span lang="it">Assistente personale · IA</span>
+      <span lang="es">Asistente personal · IA</span>
     </div>
     <h1>
       <span lang="en">An assistant for <em>your whole life</em>.</span>
       <span lang="ro">Un asistent pentru <em>viața întreagă</em>.</span>
+      <span lang="it">Un assistente per <em>tutta la tua vita</em>.</span>
+      <span lang="es">Un asistente para <em>toda tu vida</em>.</span>
     </h1>
     <p class="lead">
       <span lang="en">Osyren turns your goals into clear steps, reminds you what truly matters, and learns how you live — so it can support you exactly when you need it.</span>
       <span lang="ro">Osyren îți transformă obiectivele în pași clari, îți reamintește ce contează cu adevărat și învață cum trăiești — ca să te sprijine exact când ai nevoie.</span>
+      <span lang="it">Osyren trasforma i tuoi obiettivi in passi chiari, ti ricorda ciò che conta davvero e impara come vivi — per supportarti esattamente quando ne hai bisogno.</span>
+      <span lang="es">Osyren convierte tus objetivos en pasos claros, te recuerda lo que realmente importa y aprende cómo vives — para apoyarte exactamente cuando lo necesitas.</span>
     </p>
     <div class="hero-actions">
       <a href="#start" class="btn btn-primary">
-        <span lang="en">Start free</span><span lang="ro">Începe gratuit</span>
+        <span lang="en">Start free</span><span lang="ro">Începe gratuit</span><span lang="it">Inizia gratis</span><span lang="es">Empieza gratis</span>
         <span class="btn-arrow">→</span>
       </a>
       <a href="#how" class="btn btn-ghost">
-        <span lang="en">See how it works</span><span lang="ro">Vezi cum funcționează</span>
+        <span lang="en">See how it works</span><span lang="ro">Vezi cum funcționează</span><span lang="it">Scopri come funziona</span><span lang="es">Ve cómo funciona</span>
       </a>
     </div>
     <div class="hero-trust">
       <span class="hero-trust-dots"><span></span><span></span><span></span></span>
       <span>
-        <span lang="en">Available in English · Romanian · Italian</span>
-        <span lang="ro">Disponibil în Română · Italiană · Engleză</span>
+        <span lang="en">English · Romanian · Italian · Spanish — and more inside the app</span>
+        <span lang="ro">Engleză · Română · Italiană · Spaniolă — și alte limbi în aplicație</span>
+        <span lang="it">Inglese · Rumeno · Italiano · Spagnolo — e altre lingue nell'app</span>
+        <span lang="es">Inglés · Rumano · Italiano · Español — y más idiomas en la app</span>
       </span>
+    </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-frame">
+        <img src="images/home.jpg" alt="Osyren home screen" loading="eager" />
+      </div>
     </div>
   </div>
 </header>
@@ -695,15 +926,22 @@
   <div class="container">
     <div class="reveal">
       <div class="section-eyebrow">
-        <span lang="en">What Osyren does</span><span lang="ro">Ce face Osyren</span>
+        <span lang="en">What Osyren does</span>
+        <span lang="ro">Ce face Osyren</span>
+        <span lang="it">Cosa fa Osyren</span>
+        <span lang="es">Qué hace Osyren</span>
       </div>
       <h2 class="section-title">
         <span lang="en">One place for <em>everything you need to do</em>.</span>
         <span lang="ro">Un singur loc pentru <em>tot ce ai de făcut</em>.</span>
+        <span lang="it">Un unico posto per <em>tutto ciò che devi fare</em>.</span>
+        <span lang="es">Un solo lugar para <em>todo lo que necesitas hacer</em>.</span>
       </h2>
       <p class="section-sub">
         <span lang="en">From big goals to small daily reminders — Osyren weaves everything you need into one natural flow to keep your life aligned.</span>
         <span lang="ro">De la obiective mari la mici reminder-e zilnice — Osyren integrează într-un flux natural tot ce ai nevoie să-ți ții viața aliniată.</span>
+        <span lang="it">Dai grandi obiettivi ai piccoli promemoria quotidiani — Osyren intreccia tutto ciò di cui hai bisogno in un flusso naturale per mantenere la tua vita allineata.</span>
+        <span lang="es">Desde grandes objetivos hasta pequeños recordatorios diarios — Osyren teje todo lo que necesitas en un flujo natural para mantener tu vida alineada.</span>
       </p>
     </div>
 
@@ -712,10 +950,17 @@
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         </div>
-        <h3><span lang="en">Voice chat</span><span lang="ro">Chat cu voce</span></h3>
+        <h3>
+          <span lang="en">Voice chat</span>
+          <span lang="ro">Chat cu voce</span>
+          <span lang="it">Chat vocale</span>
+          <span lang="es">Chat por voz</span>
+        </h3>
         <p>
           <span lang="en">Speak naturally in any supported language. Osyren understands, responds, and reads the answer back if you want. No rigid commands.</span>
           <span lang="ro">Vorbește natural în orice limbă. Osyren înțelege, răspunde și rostește răspunsul dacă vrei. Fără comenzi rigide.</span>
+          <span lang="it">Parla naturalmente in qualsiasi lingua supportata. Osyren capisce, risponde e legge la risposta ad alta voce se vuoi. Nessun comando rigido.</span>
+          <span lang="es">Habla con naturalidad en cualquier idioma compatible. Osyren entiende, responde y lee la respuesta en voz alta si quieres. Sin comandos rígidos.</span>
         </p>
       </div>
 
@@ -723,10 +968,17 @@
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         </div>
-        <h3><span lang="en">Photo intelligence</span><span lang="ro">Citire din poze</span></h3>
+        <h3>
+          <span lang="en">Photo intelligence</span>
+          <span lang="ro">Citire din poze</span>
+          <span lang="it">Lettura dalle foto</span>
+          <span lang="es">Lectura de fotos</span>
+        </h3>
         <p>
           <span lang="en">Snap a photo of a reservation, ticket, or receipt. Osyren reads it instantly and creates the right reminders for you — no typing.</span>
           <span lang="ro">Fă o poză la o rezervare, bilet sau chitanță. Osyren o citește instant și creează reminder-ele potrivite — fără să mai scrii nimic.</span>
+          <span lang="it">Scatta una foto di una prenotazione, un biglietto o una ricevuta. Osyren la legge all'istante e crea i promemoria giusti per te — senza digitare.</span>
+          <span lang="es">Saca una foto de una reserva, un billete o un recibo. Osyren lo lee al instante y crea los recordatorios adecuados — sin teclear nada.</span>
         </p>
       </div>
 
@@ -734,10 +986,17 @@
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 6-6"/></svg>
         </div>
-        <h3><span lang="en">Plans from goals</span><span lang="ro">Planuri din obiective</span></h3>
+        <h3>
+          <span lang="en">Plans from goals</span>
+          <span lang="ro">Planuri din obiective</span>
+          <span lang="it">Piani dagli obiettivi</span>
+          <span lang="es">Planes desde objetivos</span>
+        </h3>
         <p>
           <span lang="en">Tell it where you want to go. Osyren builds the path — clear steps, deadlines, and tracking, ready to start.</span>
           <span lang="ro">Spune-i unde vrei să ajungi. Osyren îți construiește drumul — pași clari, cu termene și urmărire, gata de început.</span>
+          <span lang="it">Digli dove vuoi arrivare. Osyren costruisce il percorso — passi chiari, scadenze e monitoraggio, pronti da iniziare.</span>
+          <span lang="es">Dile a dónde quieres llegar. Osyren construye el camino — pasos claros, plazos y seguimiento, listos para empezar.</span>
         </p>
       </div>
 
@@ -745,10 +1004,17 @@
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
-        <h3><span lang="en">Smart reminders</span><span lang="ro">Reminder-e inteligente</span></h3>
+        <h3>
+          <span lang="en">Smart reminders</span>
+          <span lang="ro">Reminder-e inteligente</span>
+          <span lang="it">Promemoria intelligenti</span>
+          <span lang="es">Recordatorios inteligentes</span>
+        </h3>
         <p>
           <span lang="en">"Remind me Monday at 8 to call the doctor." Osyren understands natural language and keeps you accountable with notifications.</span>
           <span lang="ro">„Amintește-mi luni la 8 să sun la medic." Osyren înțelege limbajul natural și te ține responsabil cu notificări.</span>
+          <span lang="it">«Ricordami lunedì alle 8 di chiamare il medico.» Osyren capisce il linguaggio naturale e ti tiene responsabile con le notifiche.</span>
+          <span lang="es">«Recuérdame el lunes a las 8 llamar al médico.» Osyren entiende el lenguaje natural y te mantiene responsable con notificaciones.</span>
         </p>
       </div>
 
@@ -756,10 +1022,17 @@
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3><span lang="en">Shared chats &amp; plans</span><span lang="ro">Chat &amp; planuri comune</span></h3>
+        <h3>
+          <span lang="en">Shared chats &amp; plans</span>
+          <span lang="ro">Chat &amp; planuri comune</span>
+          <span lang="it">Chat e piani condivisi</span>
+          <span lang="es">Chats y planes compartidos</span>
+        </h3>
         <p>
           <span lang="en">1-on-1 or in a group. Plans and reminders sync to everyone involved — across all their devices, in real time.</span>
           <span lang="ro">1 la 1 sau în grup. Planurile și reminder-ele se sincronizează la toți participanții — pe toate dispozitivele, în timp real.</span>
+          <span lang="it">A tu per tu o in gruppo. Piani e promemoria si sincronizzano con tutti i partecipanti — su tutti i loro dispositivi, in tempo reale.</span>
+          <span lang="es">Cara a cara o en grupo. Los planes y recordatorios se sincronizan con todos los participantes — en todos sus dispositivos, en tiempo real.</span>
         </p>
       </div>
 
@@ -767,10 +1040,17 @@
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </div>
-        <h3><span lang="en">Any channel, one place</span><span lang="ro">Mesaje pe orice canal</span></h3>
+        <h3>
+          <span lang="en">Any channel, one place</span>
+          <span lang="ro">Mesaje pe orice canal</span>
+          <span lang="it">Ogni canale, un posto</span>
+          <span lang="es">Todo canal, un lugar</span>
+        </h3>
         <p>
           <span lang="en">Send SMS, WhatsApp, Telegram, or email straight from the chat. No app-switching, no copy-paste.</span>
           <span lang="ro">Trimite SMS, WhatsApp, Telegram sau email direct din chat. Fără să mai treci de la o aplicație la alta.</span>
+          <span lang="it">Invia SMS, WhatsApp, Telegram o email direttamente dalla chat. Nessun cambio di app, nessun copia-incolla.</span>
+          <span lang="es">Envía SMS, WhatsApp, Telegram o correos directamente desde el chat. Sin cambiar de app, sin copiar y pegar.</span>
         </p>
       </div>
 
@@ -778,10 +1058,17 @@
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
         </div>
-        <h3><span lang="en">PDF: read &amp; create</span><span lang="ro">PDF: citire și creare</span></h3>
+        <h3>
+          <span lang="en">PDF: read &amp; create</span>
+          <span lang="ro">PDF: citire și creare</span>
+          <span lang="it">PDF: leggi e crea</span>
+          <span lang="es">PDF: leer y crear</span>
+        </h3>
         <p>
           <span lang="en">Analyze contracts, receipts, or CVs. Generate reports, summaries, and documents ready to send — all from one conversation.</span>
           <span lang="ro">Analizează contracte, chitanțe sau CV-uri. Generează rapoarte, sumare și documente gata de trimis — tot dintr-o conversație.</span>
+          <span lang="it">Analizza contratti, ricevute o CV. Genera report, riassunti e documenti pronti da inviare — tutto in un'unica conversazione.</span>
+          <span lang="es">Analiza contratos, recibos o CVs. Genera informes, resúmenes y documentos listos para enviar — todo desde una sola conversación.</span>
         </p>
       </div>
 
@@ -793,6 +1080,8 @@
         <p>
           <span lang="en">Your long-term direction, visualized. What you've done, where you are, where you're heading — in a clear picture.</span>
           <span lang="ro">Direcția ta pe termen lung, vizualizată. Ce ai făcut, unde ești, unde te îndrepți — într-o imagine clară.</span>
+          <span lang="it">La tua direzione a lungo termine, visualizzata. Cosa hai fatto, dove sei, dove stai andando — in un'immagine chiara.</span>
+          <span lang="es">Tu dirección a largo plazo, visualizada. Lo que has hecho, dónde estás, a dónde te diriges — en una imagen clara.</span>
         </p>
       </div>
 
@@ -800,12 +1089,163 @@
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
-        <h3><span lang="en">Natively multilingual</span><span lang="ro">Multilingv nativ</span></h3>
+        <h3>
+          <span lang="en">Natively multilingual</span>
+          <span lang="ro">Multilingv nativ</span>
+          <span lang="it">Multilingue nativo</span>
+          <span lang="es">Multilingüe nativo</span>
+        </h3>
         <p>
-          <span lang="en">English, Romanian, Italian — fluent switching between languages in the same conversation. It understands you as you speak.</span>
-          <span lang="ro">Română, italiană, engleză — switch fluent între limbi în aceeași conversație. Te înțelege așa cum vorbești.</span>
+          <span lang="en">English, Romanian, Italian, Spanish — and more inside the app. Fluent switching between languages in the same conversation.</span>
+          <span lang="ro">Engleză, română, italiană, spaniolă — și altele în aplicație. Switch fluent între limbi în aceeași conversație.</span>
+          <span lang="it">Inglese, rumeno, italiano, spagnolo — e altre ancora nell'app. Passaggio fluido tra le lingue nella stessa conversazione.</span>
+          <span lang="es">Inglés, rumano, italiano, español — y más dentro de la app. Cambio fluido entre idiomas en la misma conversación.</span>
         </p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="spotlight-1" class="spotlight">
+  <div class="container">
+    <div class="spotlight-text reveal">
+      <div class="section-eyebrow">
+        <span lang="en">The chat</span>
+        <span lang="ro">Chat-ul</span>
+        <span lang="it">La chat</span>
+        <span lang="es">El chat</span>
+      </div>
+      <h3>
+        <span lang="en">More than a chatbot. It <em>understands</em>, then it <em>acts</em>.</span>
+        <span lang="ro">Mai mult decât un chatbot. <em>Înțelege</em>, apoi <em>acționează</em>.</span>
+        <span lang="it">Più di un chatbot. <em>Capisce</em>, poi <em>agisce</em>.</span>
+        <span lang="es">Más que un chatbot. <em>Entiende</em>, luego <em>actúa</em>.</span>
+      </h3>
+      <p>
+        <span lang="en">Osyren picks up how you're feeling — empathy when you're tired, structure when you're overwhelmed. Ask for a reminder, a plan, a message; it creates them inside the same conversation.</span>
+        <span lang="ro">Osyren înțelege cum te simți — empatie când ești obosit, structură când ești copleșit. Cere un reminder, un plan, un mesaj; le creează în aceeași conversație.</span>
+        <span lang="it">Osyren capisce come ti senti — empatia quando sei stanco, struttura quando sei sopraffatto. Chiedi un promemoria, un piano, un messaggio; li crea nella stessa conversazione.</span>
+        <span lang="es">Osyren entiende cómo te sientes — empatía cuando estás cansado, estructura cuando estás agobiado. Pídele un recordatorio, un plan, un mensaje; los crea en la misma conversación.</span>
+      </p>
+    </div>
+    <div class="spotlight-visual dual reveal">
+      <div class="phone-frame"><img src="images/empathy.jpg" alt="Osyren empathetic chat" loading="lazy" /></div>
+      <div class="phone-frame"><img src="images/chat.jpg" alt="Osyren creating reminders and plans from chat" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<section id="spotlight-2" class="spotlight img-right">
+  <div class="container">
+    <div class="spotlight-text reveal">
+      <div class="section-eyebrow">
+        <span lang="en">Plans</span>
+        <span lang="ro">Planuri</span>
+        <span lang="it">Piani</span>
+        <span lang="es">Planes</span>
+      </div>
+      <h3>
+        <span lang="en">Goals become <em>roadmaps</em> you can actually follow.</span>
+        <span lang="ro">Obiectivele devin <em>parcursuri</em> pe care le poți urma.</span>
+        <span lang="it">Gli obiettivi diventano <em>percorsi</em> che puoi davvero seguire.</span>
+        <span lang="es">Los objetivos se convierten en <em>rutas</em> que puedes seguir.</span>
+      </h3>
+      <p>
+        <span lang="en">Tell Osyren what you want — a trip, a project, a habit. It breaks it into clear phases and steps, each with its own date and reminder. Check off as you go.</span>
+        <span lang="ro">Spune-i lui Osyren ce vrei — o călătorie, un proiect, un obicei. Îl împarte în faze și pași clari, fiecare cu data și reminder-ul lui. Bifezi pe măsură ce avansezi.</span>
+        <span lang="it">Di' a Osyren cosa vuoi — un viaggio, un progetto, un'abitudine. Lo suddivide in fasi e passi chiari, ciascuno con data e promemoria. Spunta man mano che avanzi.</span>
+        <span lang="es">Dile a Osyren qué quieres — un viaje, un proyecto, un hábito. Lo divide en fases y pasos claros, cada uno con su fecha y recordatorio. Marca según avances.</span>
+      </p>
+    </div>
+    <div class="spotlight-visual reveal">
+      <div class="phone-frame"><img src="images/plan.jpg" alt="Osyren plan view" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<section id="spotlight-3" class="spotlight">
+  <div class="container">
+    <div class="spotlight-text reveal">
+      <div class="section-eyebrow">
+        <span lang="en">Calendar</span>
+        <span lang="ro">Calendar</span>
+        <span lang="it">Calendario</span>
+        <span lang="es">Calendario</span>
+      </div>
+      <h3>
+        <span lang="en">Everything, on <em>one calendar</em>.</span>
+        <span lang="ro">Totul, într-un <em>singur calendar</em>.</span>
+        <span lang="it">Tutto, su un <em>unico calendario</em>.</span>
+        <span lang="es">Todo, en un <em>solo calendario</em>.</span>
+      </h3>
+      <p>
+        <span lang="en">Reminders, plan steps, and events — color-coded and visible at a glance. See the day you're planning, the trip coming up, the small things that matter.</span>
+        <span lang="ro">Reminder-e, pași din planuri, evenimente — color-coded, vizibile dintr-o privire. Vezi ziua pe care o planifici, călătoria care urmează, lucrurile mici care contează.</span>
+        <span lang="it">Promemoria, passi dei piani, eventi — codificati a colori e visibili in un colpo d'occhio. Vedi la giornata che stai pianificando, il viaggio in arrivo, le piccole cose che contano.</span>
+        <span lang="es">Recordatorios, pasos de planes y eventos — codificados por color y visibles de un vistazo. Ve el día que planificas, el viaje que viene, las pequeñas cosas que importan.</span>
+      </p>
+    </div>
+    <div class="spotlight-visual reveal">
+      <div class="phone-frame"><img src="images/calendar.jpg" alt="Osyren calendar with reminders and plan steps" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<section id="spotlight-4" class="spotlight img-right">
+  <div class="container">
+    <div class="spotlight-text reveal">
+      <div class="section-eyebrow">
+        <span lang="en">Together</span>
+        <span lang="ro">Împreună</span>
+        <span lang="it">Insieme</span>
+        <span lang="es">Juntos</span>
+      </div>
+      <h3>
+        <span lang="en">Planning <em>with the people</em> who matter.</span>
+        <span lang="ro">Planifici <em>cu oamenii</em> care contează.</span>
+        <span lang="it">Pianifica <em>con le persone</em> che contano.</span>
+        <span lang="es">Planifica <em>con las personas</em> que importan.</span>
+      </h3>
+      <p>
+        <span lang="en">Invite someone into a chat. Propose a shared reminder or plan. They accept on their own device, and it syncs — in real time, across every person involved.</span>
+        <span lang="ro">Invită pe cineva în chat. Propui un reminder sau plan comun. Celălalt îl acceptă pe telefonul lui și se sincronizează — în timp real, pentru toți.</span>
+        <span lang="it">Invita qualcuno in una chat. Proponi un promemoria o un piano condiviso. L'altro lo accetta sul proprio dispositivo e si sincronizza — in tempo reale, per tutti.</span>
+        <span lang="es">Invita a alguien a una chat. Propones un recordatorio o plan compartido. El otro lo acepta en su dispositivo y se sincroniza — en tiempo real, para todos.</span>
+      </p>
+    </div>
+    <div class="spotlight-visual dual reveal">
+      <div class="phone-frame"><img src="images/group.jpg" alt="Osyren group chat" loading="lazy" /></div>
+      <div class="phone-frame"><img src="images/shared.jpg" alt="Osyren shared reminder accept/decline" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<section id="spotlight-5" class="spotlight">
+  <div class="container">
+    <div class="spotlight-text reveal">
+      <div class="section-eyebrow">
+        <span lang="en">Insights</span>
+        <span lang="ro">Insights</span>
+        <span lang="it">Insight</span>
+        <span lang="es">Insights</span>
+      </div>
+      <h3>
+        <span lang="en">Osyren sees <em>patterns</em> you'd miss.</span>
+        <span lang="ro">Osyren vede <em>tipare</em> pe care tu le-ai rata.</span>
+        <span lang="it">Osyren vede <em>schemi</em> che tu non noteresti.</span>
+        <span lang="es">Osyren ve <em>patrones</em> que tú no notarías.</span>
+      </h3>
+      <p>
+        <span lang="en">It tracks your streaks, notices when you're overwhelmed, and writes you a weekly reflection — not just stats, but observations that help you course-correct before things pile up.</span>
+        <span lang="ro">Urmărește streak-urile tale, observă când ești copleșit și îți scrie o reflecție săptămânală — nu doar statistici, ci observații care te ajută să corectezi cursul înainte să se acumuleze lucrurile.</span>
+        <span lang="it">Traccia i tuoi streak, nota quando sei sopraffatto e ti scrive una riflessione settimanale — non solo statistiche, ma osservazioni che ti aiutano a correggere la rotta prima che le cose si accumulino.</span>
+        <span lang="es">Rastrea tus rachas, nota cuando estás agobiado y te escribe una reflexión semanal — no solo estadísticas, sino observaciones que te ayudan a corregir el rumbo antes de que las cosas se acumulen.</span>
+      </p>
+    </div>
+    <div class="spotlight-visual triple reveal">
+      <div class="phone-frame"><img src="images/summary.jpg" alt="Osyren summary stats" loading="lazy" /></div>
+      <div class="phone-frame"><img src="images/roadlife.jpg" alt="Osyren journey tracking" loading="lazy" /></div>
+      <div class="phone-frame"><img src="images/analysis.jpg" alt="Osyren AI insights" loading="lazy" /></div>
     </div>
   </div>
 </section>
@@ -814,61 +1254,92 @@
   <div class="container">
     <div class="reveal">
       <div class="section-eyebrow">
-        <span lang="en">How it works</span><span lang="ro">Cum funcționează</span>
+        <span lang="en">How it works</span>
+        <span lang="ro">Cum funcționează</span>
+        <span lang="it">Come funziona</span>
+        <span lang="es">Cómo funciona</span>
       </div>
       <h2 class="section-title">
         <span lang="en">Three steps, zero <em>friction</em>.</span>
         <span lang="ro">Trei pași, zero <em>friction</em>.</span>
+        <span lang="it">Tre passi, zero <em>attriti</em>.</span>
+        <span lang="es">Tres pasos, cero <em>fricción</em>.</span>
       </h2>
       <p class="section-sub">
         <span lang="en">There's no learning curve. Download, speak, Osyren handles the rest.</span>
         <span lang="ro">Nu are curbă de învățare. Descarci, vorbești, Osyren se ocupă de rest.</span>
+        <span lang="it">Nessuna curva di apprendimento. Scarichi, parli, Osyren si occupa del resto.</span>
+        <span lang="es">No hay curva de aprendizaje. Descargas, hablas, Osyren se encarga del resto.</span>
       </p>
     </div>
 
     <div class="steps reveal">
       <div class="step">
-        <span class="step-num">01 · <span lang="en">Say</span><span lang="ro">Spune</span></span>
+        <span class="step-num">01 · <span lang="en">Say</span><span lang="ro">Spune</span><span lang="it">Dì</span><span lang="es">Dilo</span></span>
         <h3>
           <span lang="en">Tell it what's on your mind.</span>
           <span lang="ro">Zi-i ce ai pe cap.</span>
+          <span lang="it">Digli cosa hai in mente.</span>
+          <span lang="es">Dile qué tienes en mente.</span>
         </h3>
         <p>
           <span lang="en">"I want to learn French by autumn." "Remind me to call dad on Friday." In your language, however you want.</span>
           <span lang="ro">„Vreau să învăț franceză până-n toamnă." „Amintește-mi să-i sun tatei vineri." În limbajul tău, oricum vrei.</span>
+          <span lang="it">«Voglio imparare il francese entro l'autunno.» «Ricordami di chiamare papà venerdì.» Nella tua lingua, come vuoi.</span>
+          <span lang="es">«Quiero aprender francés para el otoño.» «Recuérdame llamar a papá el viernes.» En tu idioma, como quieras.</span>
         </p>
       </div>
       <div class="step">
-        <span class="step-num">02 · <span lang="en">Receive</span><span lang="ro">Primește</span></span>
+        <span class="step-num">02 · <span lang="en">Receive</span><span lang="ro">Primește</span><span lang="it">Ricevi</span><span lang="es">Recibe</span></span>
         <h3>
           <span lang="en">Get a clear plan.</span>
           <span lang="ro">Primești un plan clar.</span>
+          <span lang="it">Ricevi un piano chiaro.</span>
+          <span lang="es">Recibes un plan claro.</span>
         </h3>
         <p>
           <span lang="en">Osyren builds the path: steps, deadlines, reminders configured. Approve or adjust in 10 seconds.</span>
           <span lang="ro">Osyren îți construiește drumul: pași, termene, reminder-e configurate. Aprobi sau ajustezi în 10 secunde.</span>
+          <span lang="it">Osyren costruisce il percorso: passi, scadenze, promemoria configurati. Approva o modifica in 10 secondi.</span>
+          <span lang="es">Osyren construye el camino: pasos, plazos, recordatorios configurados. Apruebas o ajustas en 10 segundos.</span>
         </p>
       </div>
       <div class="step">
-        <span class="step-num">03 · <span lang="en">Follow</span><span lang="ro">Urmează</span></span>
+        <span class="step-num">03 · <span lang="en">Follow</span><span lang="ro">Urmează</span><span lang="it">Segui</span><span lang="es">Sigue</span></span>
         <h3>
           <span lang="en">We keep you accountable.</span>
           <span lang="ro">Te ținem responsabil.</span>
+          <span lang="it">Ti teniamo responsabile.</span>
+          <span lang="es">Te mantenemos responsable.</span>
         </h3>
         <p>
           <span lang="en">Notifications at the right moment, check-ins when needed, a weekly summary of where you are. No spam.</span>
           <span lang="ro">Notificări la momentul potrivit, check-in-uri când e cazul, sumar săptămânal despre unde ești. Fără spam.</span>
+          <span lang="it">Notifiche al momento giusto, check-in quando serve, un riassunto settimanale di dove sei. Nessuno spam.</span>
+          <span lang="es">Notificaciones en el momento adecuado, check-ins cuando haga falta, un resumen semanal de dónde estás. Sin spam.</span>
         </p>
       </div>
     </div>
 
     <div class="demo reveal">
-      <div class="demo-label"><span lang="en">Example</span><span lang="ro">Exemplu</span></div>
+      <div class="demo-label">
+        <span lang="en">Example</span>
+        <span lang="ro">Exemplu</span>
+        <span lang="it">Esempio</span>
+        <span lang="es">Ejemplo</span>
+      </div>
       <div class="chat-msg">
-        <span class="chat-from"><span lang="en">You</span><span lang="ro">Tu</span></span>
+        <span class="chat-from">
+          <span lang="en">You</span>
+          <span lang="ro">Tu</span>
+          <span lang="it">Tu</span>
+          <span lang="es">Tú</span>
+        </span>
         <span class="chat-text">
           <span lang="en">*sends a photo of a hotel booking confirmation*</span>
           <span lang="ro">*trimite o poză cu confirmarea rezervării de la hotel*</span>
+          <span lang="it">*invia una foto della conferma di prenotazione dell'hotel*</span>
+          <span lang="es">*envía una foto de la confirmación de reserva del hotel*</span>
         </span>
       </div>
       <div class="chat-msg ai">
@@ -876,6 +1347,8 @@
         <span class="chat-text">
           <span lang="en">Got it — Hotel Marina, Constanța, check-in July 14 at 2pm, 3 nights. I'll remind you the day before to pack, and set the check-in time in your calendar. Send a confirmation WhatsApp to Ana?</span>
           <span lang="ro">Am văzut — Hotel Marina, Constanța, check-in 14 iulie la 14:00, 3 nopți. Îți pun reminder cu o zi înainte să-ți faci bagajul, și check-in-ul în calendar. Îi trimit un WhatsApp și Anei cu confirmarea?</span>
+          <span lang="it">Visto — Hotel Marina, Constanța, check-in 14 luglio alle 14:00, 3 notti. Ti ricordo il giorno prima di fare i bagagli e metto il check-in in calendario. Mando un WhatsApp di conferma ad Ana?</span>
+          <span lang="es">Entendido — Hotel Marina, Constanța, check-in 14 de julio a las 14:00, 3 noches. Te recordaré el día antes para hacer las maletas y pondré el check-in en el calendario. ¿Le envío un WhatsApp de confirmación a Ana?</span>
         </span>
       </div>
     </div>
@@ -886,14 +1359,23 @@
   <div class="container">
     <div class="why">
       <div class="reveal">
-        <div class="section-eyebrow"><span lang="en">Why Osyren</span><span lang="ro">De ce Osyren</span></div>
+        <div class="section-eyebrow">
+          <span lang="en">Why Osyren</span>
+          <span lang="ro">De ce Osyren</span>
+          <span lang="it">Perché Osyren</span>
+          <span lang="es">Por qué Osyren</span>
+        </div>
         <h2 class="section-title">
           <span lang="en">Built to serve <em>you</em>, not the algorithm.</span>
           <span lang="ro">Construit să-ți servească <em>ție</em>, nu algoritmului.</span>
+          <span lang="it">Costruito per servire <em>te</em>, non l'algoritmo.</span>
+          <span lang="es">Construido para servirte a <em>ti</em>, no al algoritmo.</span>
         </h2>
         <p class="section-sub">
           <span lang="en">Every technical decision started with one question: what would an assistant look like if it actually helped you live better, without turning you into a product?</span>
           <span lang="ro">Fiecare decizie tehnică a pornit dintr-o singură întrebare: cum ar arăta un asistent care chiar te ajută să trăiești mai bine, fără să te transforme într-un produs?</span>
+          <span lang="it">Ogni decisione tecnica è partita da una sola domanda: come sarebbe un assistente che ti aiutasse davvero a vivere meglio, senza trasformarti in un prodotto?</span>
+          <span lang="es">Cada decisión técnica empezó con una sola pregunta: ¿cómo sería un asistente que realmente te ayude a vivir mejor, sin convertirte en un producto?</span>
         </p>
       </div>
 
@@ -905,36 +1387,59 @@
             <p>
               <span lang="en">Your conversations live on your device. No models are trained on your data.</span>
               <span lang="ro">Conversațiile trăiesc pe dispozitivul tău. Nu sunt antrenați modele pe datele tale.</span>
+              <span lang="it">Le tue conversazioni vivono sul tuo dispositivo. Nessun modello viene addestrato sui tuoi dati.</span>
+              <span lang="es">Tus conversaciones viven en tu dispositivo. Ningún modelo se entrena con tus datos.</span>
             </p>
           </div>
         </li>
         <li class="why-item">
           <span class="why-item-num">02</span>
           <div>
-            <h4><span lang="en">Understands how you speak</span><span lang="ro">Te înțelege cum vorbești</span></h4>
+            <h4>
+              <span lang="en">Understands how you speak</span>
+              <span lang="ro">Te înțelege cum vorbești</span>
+              <span lang="it">Ti capisce come parli</span>
+              <span lang="es">Te entiende como hablas</span>
+            </h4>
             <p>
               <span lang="en">No strict commands, no forms. Write or speak naturally, in your language — Osyren understands context.</span>
               <span lang="ro">Fără comenzi stricte, fără formulare. Scrii sau vorbești natural, în limba ta — Osyren înțelege contextul.</span>
+              <span lang="it">Nessun comando rigido, nessun modulo. Scrivi o parli naturalmente, nella tua lingua — Osyren capisce il contesto.</span>
+              <span lang="es">Sin comandos estrictos, sin formularios. Escribe o habla con naturalidad, en tu idioma — Osyren entiende el contexto.</span>
             </p>
           </div>
         </li>
         <li class="why-item">
           <span class="why-item-num">03</span>
           <div>
-            <h4><span lang="en">Learns how you live</span><span lang="ro">Învață cum trăiești</span></h4>
+            <h4>
+              <span lang="en">Learns how you live</span>
+              <span lang="ro">Învață cum trăiești</span>
+              <span lang="it">Impara come vivi</span>
+              <span lang="es">Aprende cómo vives</span>
+            </h4>
             <p>
               <span lang="en">Preferences, rhythms, what matters to you. The more you use it, the more it becomes yours.</span>
               <span lang="ro">Preferințele, ritmurile, lucrurile importante pentru tine. Cu cât îl folosești, cu atât devine mai al tău.</span>
+              <span lang="it">Preferenze, ritmi, ciò che conta per te. Più lo usi, più diventa tuo.</span>
+              <span lang="es">Preferencias, ritmos, lo que te importa. Cuanto más lo usas, más se vuelve tuyo.</span>
             </p>
           </div>
         </li>
         <li class="why-item">
           <span class="why-item-num">04</span>
           <div>
-            <h4><span lang="en">Built by one person</span><span lang="ro">Construit de un singur om</span></h4>
+            <h4>
+              <span lang="en">Built by one person</span>
+              <span lang="ro">Construit de un singur om</span>
+              <span lang="it">Costruito da una sola persona</span>
+              <span lang="es">Construido por una sola persona</span>
+            </h4>
             <p>
               <span lang="en">No investors, no scaling pressure. A product made by someone who wants you to use it daily, not to monetize your data.</span>
               <span lang="ro">Fără investitori, fără presiune de scalare. Produs făcut de cineva care vrea ca tu să-l folosești zilnic, nu să-ți vadă datele.</span>
+              <span lang="it">Nessun investitore, nessuna pressione di scalabilità. Un prodotto fatto da qualcuno che vuole che tu lo usi ogni giorno, non monetizzare i tuoi dati.</span>
+              <span lang="es">Sin inversores, sin presión por escalar. Un producto hecho por alguien que quiere que lo uses a diario, no monetizar tus datos.</span>
             </p>
           </div>
         </li>
@@ -948,13 +1453,20 @@
     <h2>
       <span lang="en">Start today. <em>Free</em>.</span>
       <span lang="ro">Începe azi. <em>Gratuit</em>.</span>
+      <span lang="it">Inizia oggi. <em>Gratis</em>.</span>
+      <span lang="es">Empieza hoy. <em>Gratis</em>.</span>
     </h2>
     <p>
       <span lang="en">Download the app, tell it what's on your mind, and see what it does. No credit card, no subscription upfront.</span>
       <span lang="ro">Descarcă aplicația, spune-i ce ai pe cap și vezi ce face. Fără card, fără abonament de la început.</span>
+      <span lang="it">Scarica l'app, dille cosa hai in mente e guarda cosa fa. Nessuna carta di credito, nessun abbonamento iniziale.</span>
+      <span lang="es">Descarga la app, dile qué tienes en mente y mira qué hace. Sin tarjeta de crédito, sin suscripción inicial.</span>
     </p>
     <a href="#" class="btn btn-primary">
-      <span lang="en">Download Osyren</span><span lang="ro">Descarcă Osyren</span>
+      <span lang="en">Download Osyren</span>
+      <span lang="ro">Descarcă Osyren</span>
+      <span lang="it">Scarica Osyren</span>
+      <span lang="es">Descargar Osyren</span>
       <span class="btn-arrow">→</span>
     </a>
   </div>
@@ -975,34 +1487,44 @@
 </footer>
 
 <script>
-  // Language toggle
+  // Language toggle — EN/RO/IT/ES with browser autodetect
   (function() {
+    const SUPPORTED = ['en', 'ro', 'it', 'es'];
     const body = document.body;
-    const btnEn = document.getElementById('lang-en');
-    const btnRo = document.getElementById('lang-ro');
+    const buttons = {};
+    SUPPORTED.forEach(l => { buttons[l] = document.getElementById('lang-' + l); });
 
     function setLang(lang) {
+      if (!SUPPORTED.includes(lang)) lang = 'en';
       body.dataset.lang = lang;
       document.documentElement.lang = lang;
-      btnEn.classList.toggle('active', lang === 'en');
-      btnRo.classList.toggle('active', lang === 'ro');
+      SUPPORTED.forEach(l => buttons[l].classList.toggle('active', l === lang));
       try { localStorage.setItem('osyren-lang', lang); } catch(e) {}
     }
 
+    // Priority: saved choice > browser language > English fallback
     let initial = 'en';
     try {
       const stored = localStorage.getItem('osyren-lang');
-      if (stored === 'en' || stored === 'ro') {
+      if (SUPPORTED.includes(stored)) {
         initial = stored;
       } else {
-        const browserLang = (navigator.language || '').slice(0, 2).toLowerCase();
-        if (browserLang === 'ro') initial = 'ro';
+        // Check all browser languages (navigator.languages is an array)
+        const browserLangs = navigator.languages || [navigator.language || ''];
+        for (const bl of browserLangs) {
+          const code = bl.slice(0, 2).toLowerCase();
+          if (SUPPORTED.includes(code)) {
+            initial = code;
+            break;
+          }
+        }
       }
     } catch(e) {}
     setLang(initial);
 
-    btnEn.addEventListener('click', () => setLang('en'));
-    btnRo.addEventListener('click', () => setLang('ro'));
+    SUPPORTED.forEach(l => {
+      buttons[l].addEventListener('click', () => setLang(l));
+    });
   })();
 
   // Starfield
