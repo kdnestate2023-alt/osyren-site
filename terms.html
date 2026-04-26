@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Osyren Terms of Service — the rules of using Osyren." />
+<meta name="theme-color" content="#060B18" />
+<title>Terms of Service — Osyren</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #060B18;
+    --bg-0: #050505;
+    --bg-1: #08180A;
+    --bg-2: #0B3018;
+    --bg-3: #10452A;
+    --gold: #D4A44C;
+    --gold-bright: #E8BC5E;
+    --text: #E8E6DF;
+    --text-muted: #8A8A82;
+    --text-faint: rgba(232, 230, 223, 0.45);
+    --border: rgba(212, 164, 76, 0.14);
+    --border-soft: rgba(232, 230, 223, 0.08);
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Geist", -apple-system, sans-serif;
+    --mono: "Geist Mono", monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .cosmic-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: linear-gradient(315deg, var(--bg-3) 0%, var(--bg-2) 28%, var(--bg-1) 62%, var(--bg-0) 100%);
+  }
+
+  .cosmic-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(59, 160, 224, 0.06), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(212, 164, 76, 0.04), transparent 60%);
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+  @media (max-width: 640px) { .container { padding: 0 1.5rem; } }
+
+  nav { padding: 1.5rem 0; border-bottom: 1px solid var(--border-soft); }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(212, 164, 76, 0.6);
+  }
+
+  .back-link {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover { color: var(--gold); }
+
+  header.page {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border-soft);
+    margin-bottom: 4rem;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  h1 em { font-style: italic; color: var(--gold); }
+
+  .last-updated {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+
+  main { padding-bottom: 6rem; }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.875rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  h2:first-child { margin-top: 0; }
+
+  p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  p strong, li strong { color: var(--text); font-weight: 500; }
+
+  ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  li { margin-bottom: 0.6rem; line-height: 1.6; }
+  li::marker { color: var(--gold); }
+
+  a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212, 164, 76, 0.3);
+    transition: border-color 0.2s ease;
+  }
+
+  a:hover { border-bottom-color: var(--gold); }
+
+  .highlight-box {
+    background: rgba(212, 164, 76, 0.04);
+    border-left: 2px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .highlight-box p {
+    margin-bottom: 0;
+    color: var(--text);
+    font-style: italic;
+  }
+
+  footer {
+    border-top: 1px solid var(--border-soft);
+    padding: 2.5rem 0;
+  }
+
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    border-bottom: none;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="cosmic-bg"></div>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo"><span class="logo-dot"></span>Osyren</a>
+    <a href="/" class="back-link">← Back to home</a>
+  </div>
+</nav>
+
+<header class="page">
+  <div class="container">
+    <div class="eyebrow">Legal</div>
+    <h1>Terms of <em>Service</em></h1>
+    <div class="last-updated">Last updated: April 26, 2026</div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="highlight-box">
+      <p>Short version: Use Osyren respectfully and legally. We do our best to give you a useful service, but we provide it "as is." Don't rely on AI for life-or-death decisions.</p>
+    </div>
+
+    <h2>1. Agreement</h2>
+    <p>By creating an account or using the Osyren mobile app or website (<a href="https://osyren.app">osyren.app</a>), you agree to these Terms of Service ("Terms"). If you do not agree, please do not use the service.</p>
+
+    <h2>2. Who can use Osyren</h2>
+    <p>You may use Osyren if you are at least 13 years old (or 16 in the European Union). By using Osyren, you confirm that you meet this age requirement.</p>
+    <p>If you are using Osyren on behalf of an organization, you confirm you have authority to bind that organization to these Terms.</p>
+
+    <h2>3. Your account</h2>
+    <p>To use most features, you'll need an account. You agree to:</p>
+    <ul>
+      <li>Provide accurate information when registering.</li>
+      <li>Keep your password secure.</li>
+      <li>Be responsible for all activity that happens under your account.</li>
+      <li>Notify us at <a href="mailto:hello@osyren.app">hello@osyren.app</a> if you suspect unauthorized access.</li>
+    </ul>
+
+    <h2>4. Acceptable use</h2>
+    <p>You agree not to use Osyren to:</p>
+    <ul>
+      <li>Break any law or harm anyone, including yourself.</li>
+      <li>Generate or distribute illegal, harmful, hateful, or sexually explicit content involving minors.</li>
+      <li>Impersonate another person or misrepresent your affiliation.</li>
+      <li>Attempt to reverse-engineer, decompile, or extract the source code of the app.</li>
+      <li>Overload, attack, or disrupt the service or its infrastructure.</li>
+      <li>Use the service to build a competing AI product or train other AI models on outputs.</li>
+      <li>Spam other users via shared chats or shared reminders.</li>
+    </ul>
+    <p>We reserve the right to suspend or terminate accounts that violate these rules.</p>
+
+    <h2>5. AI-generated content</h2>
+    <p>Osyren uses AI models to generate responses. Important things to know:</p>
+    <ul>
+      <li><strong>AI can make mistakes.</strong> Responses may be inaccurate, biased, or incomplete. Do not rely on Osyren as your only source for medical, legal, financial, or safety-critical decisions.</li>
+      <li><strong>You are responsible for AI outputs you act on.</strong> If Osyren suggests something, the choice to follow it is yours.</li>
+      <li><strong>You own your inputs.</strong> The messages, photos, and data you provide remain yours. By submitting them, you grant us a limited license to process them solely to provide the service.</li>
+      <li><strong>AI outputs are not guaranteed unique.</strong> Other users may receive similar AI responses to similar prompts.</li>
+    </ul>
+
+    <h2>6. Pricing and plans</h2>
+    <p>During the early access period, Osyren may be offered without charge or with limited features. We may introduce paid plans, premium features, or subscriptions in the future.</p>
+    <p>If we do, we'll communicate pricing clearly and we will never charge you without your explicit consent.</p>
+
+    <h2>7. Intellectual property</h2>
+    <p>The Osyren app, website, branding ("Osyren" name and logo), design, and code are owned by us. You may not copy, modify, redistribute, or sell them without permission.</p>
+    <p>You retain ownership of the content you create with Osyren — your messages, plans, reminders, and personal data are yours.</p>
+
+    <h2>8. Service availability and changes</h2>
+    <p>We work hard to keep Osyren running, but we don't guarantee uninterrupted service. We may:</p>
+    <ul>
+      <li>Update, modify, or discontinue features at any time.</li>
+      <li>Perform maintenance that temporarily affects availability.</li>
+      <li>Change pricing or terms with reasonable notice.</li>
+    </ul>
+
+    <h2>9. Account termination</h2>
+    <p>You may delete your account at any time by contacting <a href="mailto:hello@osyren.app">hello@osyren.app</a>. Upon deletion, your data will be permanently removed within 30 days, except where retention is required by law.</p>
+    <p>We may suspend or terminate your account if you violate these Terms or if your use harms other users or the service.</p>
+
+    <h2>10. Disclaimers</h2>
+    <p>Osyren is provided <strong>"as is" and "as available"</strong>, without warranties of any kind, express or implied. We do not warrant that:</p>
+    <ul>
+      <li>The service will be uninterrupted, error-free, or secure.</li>
+      <li>AI responses will be accurate, complete, or fit for any particular purpose.</li>
+      <li>Defects will be corrected within a specific timeframe.</li>
+    </ul>
+
+    <h2>11. Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, Osyren and its operators are not liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service — including but not limited to loss of data, missed deadlines, business losses, or reliance on AI outputs.</p>
+
+    <h2>12. Governing law</h2>
+    <p>These Terms are governed by the laws of Romania. Any disputes will be resolved in the courts of Bucharest, Romania, unless mandatory consumer protection laws in your country require otherwise.</p>
+
+    <h2>13. Changes to these terms</h2>
+    <p>We may update these Terms from time to time. When we make significant changes, we'll notify you via the app or by email. Continued use of Osyren after changes means you accept the updated Terms.</p>
+
+    <h2>14. Contact</h2>
+    <p>Questions about these Terms? Reach out at <a href="mailto:hello@osyren.app">hello@osyren.app</a>.</p>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <span class="footer-tag">© 2026 Osyren</span>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="mailto:hello@osyren.app">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

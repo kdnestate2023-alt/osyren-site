@@ -815,6 +815,96 @@
     }
   }
 
+  /* Social icons in footer */
+  .socials {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--border-soft);
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+
+  .social-link svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.5;
+  }
+
+  .social-link.active:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(212, 164, 76, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .social-link.coming-soon {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .social-link.coming-soon::after {
+    content: "Soon";
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .social-link.coming-soon:hover::after {
+    opacity: 1;
+  }
+
+  /* Reorganize footer for social row */
+  footer .container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2.5rem;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-row.bottom {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-soft);
+  }
+
+  @media (max-width: 640px) {
+    .footer-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+    .socials { justify-content: flex-start; }
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -867,7 +957,7 @@
         <button id="lang-es">ES</button>
       </div>
       <a href="#start" class="btn btn-ghost">
-        <span lang="en">Start free</span><span lang="ro">Începe gratuit</span><span lang="it">Inizia gratis</span><span lang="es">Empieza gratis</span>
+        <span lang="en">Get early access</span><span lang="ro">Acces din timp</span><span lang="it">Accesso anticipato</span><span lang="es">Acceso anticipado</span>
         <span class="btn-arrow">→</span>
       </a>
     </div>
@@ -897,7 +987,7 @@
     </p>
     <div class="hero-actions">
       <a href="#start" class="btn btn-primary">
-        <span lang="en">Start free</span><span lang="ro">Începe gratuit</span><span lang="it">Inizia gratis</span><span lang="es">Empieza gratis</span>
+        <span lang="en">Get early access</span><span lang="ro">Acces din timp</span><span lang="it">Accesso anticipato</span><span lang="es">Acceso anticipado</span>
         <span class="btn-arrow">→</span>
       </a>
       <a href="#how" class="btn btn-ghost">
@@ -1450,23 +1540,29 @@
 
 <section id="start" class="cta-final">
   <div class="container reveal">
+    <div class="section-eyebrow" style="justify-content: center; display: flex;">
+      <span lang="en">Launching May 18, 2026</span>
+      <span lang="ro">Lansare 18 mai 2026</span>
+      <span lang="it">Lancio 18 maggio 2026</span>
+      <span lang="es">Lanzamiento 18 mayo 2026</span>
+    </div>
     <h2>
-      <span lang="en">Start today. <em>Free</em>.</span>
-      <span lang="ro">Începe azi. <em>Gratuit</em>.</span>
-      <span lang="it">Inizia oggi. <em>Gratis</em>.</span>
-      <span lang="es">Empieza hoy. <em>Gratis</em>.</span>
+      <span lang="en">Be there from <em>day one</em>.</span>
+      <span lang="ro">Fii acolo din <em>prima zi</em>.</span>
+      <span lang="it">Ci sei dal <em>primo giorno</em>.</span>
+      <span lang="es">Estate desde el <em>primer día</em>.</span>
     </h2>
     <p>
-      <span lang="en">Download the app, tell it what's on your mind, and see what it does. No credit card, no subscription upfront.</span>
-      <span lang="ro">Descarcă aplicația, spune-i ce ai pe cap și vezi ce face. Fără card, fără abonament de la început.</span>
-      <span lang="it">Scarica l'app, dille cosa hai in mente e guarda cosa fa. Nessuna carta di credito, nessun abbonamento iniziale.</span>
-      <span lang="es">Descarga la app, dile qué tienes en mente y mira qué hace. Sin tarjeta de crédito, sin suscripción inicial.</span>
+      <span lang="en">Osyren launches on May 18, 2026. Join the Telegram channel for updates, early access, and the moment doors open.</span>
+      <span lang="ro">Osyren se lansează pe 18 mai 2026. Intră pe canalul de Telegram pentru update-uri, acces din timp și momentul în care deschidem ușile.</span>
+      <span lang="it">Osyren si lancia il 18 maggio 2026. Entra nel canale Telegram per aggiornamenti, accesso anticipato e il momento in cui apriamo le porte.</span>
+      <span lang="es">Osyren se lanza el 18 de mayo de 2026. Únete al canal de Telegram para actualizaciones, acceso anticipado y el momento en que abrimos.</span>
     </p>
-    <a href="#" class="btn btn-primary">
-      <span lang="en">Download Osyren</span>
-      <span lang="ro">Descarcă Osyren</span>
-      <span lang="it">Scarica Osyren</span>
-      <span lang="es">Descargar Osyren</span>
+    <a href="https://t.me/OsyrenAI" target="_blank" rel="noopener" class="btn btn-primary">
+      <span lang="en">Join on Telegram</span>
+      <span lang="ro">Intră pe Telegram</span>
+      <span lang="it">Unisciti su Telegram</span>
+      <span lang="es">Únete en Telegram</span>
       <span class="btn-arrow">→</span>
     </a>
   </div>
@@ -1474,14 +1570,55 @@
 
 <footer>
   <div class="container">
-    <div class="footer-left">
-      <a href="#" class="logo"><span class="logo-dot"></span>Osyren</a>
-      <span class="footer-tag">© 2026</span>
+    <div class="footer-row">
+      <div class="footer-left">
+        <a href="#" class="logo"><span class="logo-dot"></span>Osyren</a>
+        <span class="footer-tag">
+          <span lang="en">An assistant for your whole life.</span>
+          <span lang="ro">Un asistent pentru viața întreagă.</span>
+          <span lang="it">Un assistente per tutta la tua vita.</span>
+          <span lang="es">Un asistente para toda tu vida.</span>
+        </span>
+      </div>
+      <div class="socials">
+        <!-- Telegram - ACTIVE -->
+        <a href="https://t.me/OsyrenAI" target="_blank" rel="noopener" class="social-link active" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 4.5l-19 7 6 2.5 2.5 6 10.5-15.5z"/><path d="M9 13l3.5 3.5"/></svg>
+        </a>
+        <!-- Instagram - ACTIVE -->
+        <a href="https://www.instagram.com/osyren.app" target="_blank" rel="noopener" class="social-link active" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+        </a>
+        <!-- TikTok - ACTIVE -->
+        <a href="https://tiktok.com/@osyren.app" target="_blank" rel="noopener" class="social-link active" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.84a8.16 8.16 0 0 0 4.77 1.52V6.93a4.85 4.85 0 0 1-1.84-.24z"/></svg>
+        </a>
+        <!-- Facebook - COMING SOON -->
+        <a href="#" class="social-link coming-soon" aria-label="Facebook (coming soon)" onclick="event.preventDefault()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <!-- X (Twitter) - COMING SOON -->
+        <a href="#" class="social-link coming-soon" aria-label="X (coming soon)" onclick="event.preventDefault()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <!-- Google Play - COMING SOON -->
+        <a href="#" class="social-link coming-soon" aria-label="Google Play (coming soon)" onclick="event.preventDefault()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 3 21 12 3 21 3 3"/><line x1="3" y1="3" x2="14" y2="14"/><line x1="3" y1="21" x2="14" y2="10"/></svg>
+        </a>
+        <!-- App Store - COMING SOON -->
+        <a href="#" class="social-link coming-soon" aria-label="App Store (coming soon)" onclick="event.preventDefault()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3z"/><path d="M8 14l2-3 2 3 2-5 2 5"/></svg>
+        </a>
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="mailto:hello@osyren.app">Contact</a>
+    <div class="footer-row bottom">
+      <span class="footer-tag">© 2026 Osyren</span>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/osyren.app" target="_blank" rel="noopener">Instagram</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="mailto:hello@osyren.app">Contact</a>
+      </div>
     </div>
   </div>
 </footer>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Osyren Privacy Policy — how we handle your data." />
+<meta name="theme-color" content="#060B18" />
+<title>Privacy Policy — Osyren</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #060B18;
+    --bg-0: #050505;
+    --bg-1: #08180A;
+    --bg-2: #0B3018;
+    --bg-3: #10452A;
+    --gold: #D4A44C;
+    --gold-bright: #E8BC5E;
+    --text: #E8E6DF;
+    --text-muted: #8A8A82;
+    --text-faint: rgba(232, 230, 223, 0.45);
+    --border: rgba(212, 164, 76, 0.14);
+    --border-soft: rgba(232, 230, 223, 0.08);
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Geist", -apple-system, sans-serif;
+    --mono: "Geist Mono", monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .cosmic-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: linear-gradient(315deg, var(--bg-3) 0%, var(--bg-2) 28%, var(--bg-1) 62%, var(--bg-0) 100%);
+  }
+
+  .cosmic-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(59, 160, 224, 0.06), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(212, 164, 76, 0.04), transparent 60%);
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 0 1.5rem; }
+  }
+
+  /* Nav */
+  nav {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(212, 164, 76, 0.6);
+  }
+
+  .back-link {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover { color: var(--gold); }
+
+  /* Header */
+  header.page {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border-soft);
+    margin-bottom: 4rem;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  h1 em { font-style: italic; color: var(--gold); }
+
+  .last-updated {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+
+  /* Content */
+  main {
+    padding-bottom: 6rem;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.875rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  h2:first-child { margin-top: 0; }
+
+  h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--gold);
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  p strong, li strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  li {
+    margin-bottom: 0.6rem;
+    line-height: 1.6;
+  }
+
+  li::marker {
+    color: var(--gold);
+  }
+
+  a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212, 164, 76, 0.3);
+    transition: border-color 0.2s ease;
+  }
+
+  a:hover { border-bottom-color: var(--gold); }
+
+  .highlight-box {
+    background: rgba(212, 164, 76, 0.04);
+    border-left: 2px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .highlight-box p {
+    margin-bottom: 0;
+    color: var(--text);
+    font-style: italic;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border-soft);
+    padding: 2.5rem 0;
+    text-align: center;
+  }
+
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    border-bottom: none;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="cosmic-bg"></div>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo"><span class="logo-dot"></span>Osyren</a>
+    <a href="/" class="back-link">← Back to home</a>
+  </div>
+</nav>
+
+<header class="page">
+  <div class="container">
+    <div class="eyebrow">Legal</div>
+    <h1>Privacy <em>Policy</em></h1>
+    <div class="last-updated">Last updated: April 26, 2026</div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="highlight-box">
+      <p>Short version: Your conversations and personal data live on your device. We don't sell your data. We don't train AI models on it. They're yours.</p>
+    </div>
+
+    <h2>1. Who we are</h2>
+    <p>Osyren is a personal AI assistant app developed independently. This privacy policy explains how Osyren ("we", "us", "the app") handles your information when you use the Osyren mobile app or visit <a href="https://osyren.app">osyren.app</a>.</p>
+    <p>If you have any questions, contact us at <a href="mailto:hello@osyren.app">hello@osyren.app</a>.</p>
+
+    <h2>2. What we collect</h2>
+
+    <h3>Information you provide directly</h3>
+    <ul>
+      <li><strong>Account information</strong>: when you sign up, we collect your email address (via Firebase Authentication) and a display name.</li>
+      <li><strong>Chat content</strong>: the messages you write or speak to Osyren are sent to our servers to generate AI responses.</li>
+      <li><strong>Plans, reminders, and personal facts</strong>: information you ask Osyren to remember (e.g. "I work in marketing") is stored to personalize your experience.</li>
+      <li><strong>Voice recordings</strong>: when you use voice input, audio is sent to OpenAI's Whisper service for transcription, then discarded.</li>
+      <li><strong>Photos you send</strong>: when you send photos to Osyren (e.g. a reservation), they are processed to extract information, then discarded.</li>
+    </ul>
+
+    <h3>Information collected automatically</h3>
+    <ul>
+      <li><strong>Device timezone</strong>: to schedule reminders correctly.</li>
+      <li><strong>Crash and error logs</strong>: anonymous diagnostic information to fix bugs.</li>
+      <li><strong>Basic analytics</strong>: aggregated, anonymized data about app usage (no personal content).</li>
+    </ul>
+
+    <h3>What we do NOT collect</h3>
+    <ul>
+      <li>We do not access your contacts unless you explicitly invite them to a shared chat.</li>
+      <li>We do not access your location unless you grant explicit permission for a specific feature.</li>
+      <li>We do not access your photo library — only photos you actively share with Osyren.</li>
+      <li>We do not track you across other apps or websites.</li>
+    </ul>
+
+    <h2>3. How we use your information</h2>
+    <p>We use your information for the following purposes:</p>
+    <ul>
+      <li><strong>To provide the service</strong>: process your messages, generate AI responses, schedule reminders, and sync your data across your devices.</li>
+      <li><strong>To improve Osyren</strong>: identify and fix bugs through anonymous crash reports.</li>
+      <li><strong>To communicate with you</strong>: respond to support requests sent to <a href="mailto:hello@osyren.app">hello@osyren.app</a>.</li>
+    </ul>
+
+    <h2>4. AI processing and third-party services</h2>
+    <p>Osyren uses third-party AI services to function. When you chat with Osyren:</p>
+    <ul>
+      <li>Your messages are sent to <strong>OpenAI</strong> (GPT models) to generate responses. OpenAI processes data according to their <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</li>
+      <li>Voice messages are transcribed using <strong>OpenAI Whisper</strong>.</li>
+      <li>OpenAI's API does not use your data to train models, per their <a href="https://platform.openai.com/docs/models/how-we-use-your-data" target="_blank" rel="noopener">API data usage policy</a>.</li>
+    </ul>
+    <p>Other third-party services we use:</p>
+    <ul>
+      <li><strong>Firebase Authentication</strong> (Google) — for secure login.</li>
+      <li><strong>Firestore</strong> (Google) — for syncing your data across devices, encrypted in transit and at rest.</li>
+      <li><strong>Railway</strong> — for backend hosting.</li>
+      <li><strong>Vercel</strong> — for hosting the website you are reading right now.</li>
+    </ul>
+
+    <h2>5. Data storage and security</h2>
+    <p>Your chat history and personal facts are stored:</p>
+    <ul>
+      <li><strong>Locally on your device</strong>, in encrypted storage (AsyncStorage on Android).</li>
+      <li><strong>On our backend servers</strong> (Firestore), encrypted in transit (HTTPS) and at rest.</li>
+    </ul>
+    <p>We take reasonable security measures to protect your data, including encryption, secure authentication, and access controls. However, no online service can guarantee absolute security.</p>
+
+    <h2>6. Data sharing</h2>
+    <p>We do <strong>not</strong> sell your personal information. We do <strong>not</strong> share your data with advertisers. We do <strong>not</strong> train AI models on your data.</p>
+    <p>We share data only in these limited cases:</p>
+    <ul>
+      <li>With AI providers (OpenAI) strictly to generate responses to your queries.</li>
+      <li>With infrastructure providers (Firebase, Railway) strictly to operate the service.</li>
+      <li>If required by law or valid legal process.</li>
+      <li>If you explicitly share data via shared chats or shared reminders with another user.</li>
+    </ul>
+
+    <h2>7. Your rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li><strong>Access</strong> your data — view what Osyren remembers about you in the app's Memory section.</li>
+      <li><strong>Edit or delete</strong> any fact, plan, reminder, or chat directly from the app.</li>
+      <li><strong>Delete your account</strong> — contact us at <a href="mailto:hello@osyren.app">hello@osyren.app</a> and we will permanently delete your account and all associated data within 30 days.</li>
+      <li><strong>Export your data</strong> — request a copy of your data by emailing us.</li>
+      <li><strong>Object to processing</strong> or restrict it under applicable laws (e.g. GDPR for EU residents).</li>
+    </ul>
+
+    <h2>8. Children's privacy</h2>
+    <p>Osyren is not directed to children under 13 (or 16 in the EU). We do not knowingly collect personal information from children. If you believe a child has provided us information, please contact us and we will delete it.</p>
+
+    <h2>9. International data transfers</h2>
+    <p>Your data may be processed in countries outside your own, including the United States (where OpenAI and Google operate servers). We rely on standard contractual clauses and other legal mechanisms to protect your data during such transfers.</p>
+
+    <h2>10. Changes to this policy</h2>
+    <p>We may update this privacy policy from time to time. When we do, we'll update the "Last updated" date at the top of this page and, for significant changes, notify you in the app or by email.</p>
+
+    <h2>11. Contact</h2>
+    <p>Questions about this policy? Reach out at <a href="mailto:hello@osyren.app">hello@osyren.app</a>.</p>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <span class="footer-tag">© 2026 Osyren</span>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="mailto:hello@osyren.app">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
