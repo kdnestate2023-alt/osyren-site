@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Osyren Cookie Policy — how we handle cookies and analytics." />
+<meta name="theme-color" content="#060B18" />
+<title>Cookie Policy — Osyren</title>
+
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #060B18;
+    --bg-0: #050505;
+    --bg-1: #08180A;
+    --bg-2: #0B3018;
+    --bg-3: #10452A;
+    --gold: #D4A44C;
+    --gold-bright: #E8BC5E;
+    --text: #E8E6DF;
+    --text-muted: #8A8A82;
+    --text-faint: rgba(232, 230, 223, 0.45);
+    --border: rgba(212, 164, 76, 0.14);
+    --border-soft: rgba(232, 230, 223, 0.08);
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Geist", -apple-system, sans-serif;
+    --mono: "Geist Mono", monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .cosmic-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: linear-gradient(315deg, var(--bg-3) 0%, var(--bg-2) 28%, var(--bg-1) 62%, var(--bg-0) 100%);
+  }
+
+  .cosmic-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(59, 160, 224, 0.06), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(212, 164, 76, 0.04), transparent 60%);
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+  @media (max-width: 640px) { .container { padding: 0 1.5rem; } }
+
+  nav { padding: 1.5rem 0; border-bottom: 1px solid var(--border-soft); }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(212, 164, 76, 0.6);
+  }
+
+  .back-link {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover { color: var(--gold); }
+
+  header.page {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border-soft);
+    margin-bottom: 4rem;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  h1 em { font-style: italic; color: var(--gold); }
+
+  .last-updated {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+
+  main { padding-bottom: 6rem; }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.875rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  h2:first-child { margin-top: 0; }
+
+  p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  p strong, li strong { color: var(--text); font-weight: 500; }
+
+  ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  li { margin-bottom: 0.6rem; line-height: 1.6; }
+  li::marker { color: var(--gold); }
+
+  a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212, 164, 76, 0.3);
+    transition: border-color 0.2s ease;
+  }
+
+  a:hover { border-bottom-color: var(--gold); }
+
+  .highlight-box {
+    background: rgba(212, 164, 76, 0.04);
+    border-left: 2px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .highlight-box p {
+    margin-bottom: 0;
+    color: var(--text);
+    font-style: italic;
+  }
+
+  /* Preferences manager */
+  .preferences-box {
+    background: rgba(13, 21, 39, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 3rem 0;
+    text-align: center;
+  }
+
+  .preferences-box h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .preferences-box p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pref-status {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 1.25rem;
+  }
+
+  .pref-status.accepted {
+    background: rgba(34, 197, 94, 0.12);
+    color: rgb(134, 239, 172);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .pref-status.declined {
+    background: rgba(248, 113, 113, 0.12);
+    color: rgb(252, 165, 165);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+  }
+
+  .pref-status.unset {
+    background: rgba(212, 164, 76, 0.08);
+    color: var(--gold);
+    border: 1px solid rgba(212, 164, 76, 0.25);
+  }
+
+  .pref-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .pref-btn {
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+  }
+
+  .pref-btn-decline {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-soft);
+  }
+
+  .pref-btn-decline:hover {
+    color: var(--text);
+    border-color: var(--border);
+  }
+
+  .pref-btn-accept {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .pref-btn-accept:hover {
+    background: var(--gold-bright);
+    transform: translateY(-1px);
+  }
+
+  footer {
+    border-top: 1px solid var(--border-soft);
+    padding: 2.5rem 0;
+  }
+
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    border-bottom: none;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="cosmic-bg"></div>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo"><span class="logo-dot"></span>Osyren</a>
+    <a href="/" class="back-link">← Back to home</a>
+  </div>
+</nav>
+
+<header class="page">
+  <div class="container">
+    <div class="eyebrow">Legal</div>
+    <h1>Cookie <em>Policy</em></h1>
+    <div class="last-updated">Last updated: April 27, 2026</div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="highlight-box">
+      <p>Short version: We use one tool — Vercel Analytics — to count visits anonymously. It doesn't set tracking cookies, doesn't follow you across sites, and doesn't know who you are. You can opt out below.</p>
+    </div>
+
+    <h2>1. What are cookies?</h2>
+    <p>Cookies are small text files that websites store on your device to remember information — like your login state, language preference, or whether you've already seen a banner. They're used by almost every website on the internet.</p>
+    <p>Some cookies are <strong>essential</strong> (the site doesn't work without them). Others are <strong>optional</strong> (analytics, advertising, personalization).</p>
+
+    <h2>2. What we use on osyren.app</h2>
+    <p>This is the full list — short and honest:</p>
+
+    <h3 style="font-family: var(--serif); font-weight: 400; color: var(--gold); margin-top: 2rem; margin-bottom: 0.75rem;">Essential storage (always active)</h3>
+    <ul>
+      <li><strong>Cookie consent preference</strong> — we save your choice (Accept/Decline) in your browser's local storage so we don't show you the banner on every visit. This isn't technically a cookie, it's localStorage, and it never leaves your device.</li>
+      <li><strong>Language preference</strong> — your selected language (EN/RO/IT/ES) is saved in localStorage so the site loads in your language next time.</li>
+    </ul>
+
+    <h3 style="font-family: var(--serif); font-weight: 400; color: var(--gold); margin-top: 2rem; margin-bottom: 0.75rem;">Optional analytics (only if you accept)</h3>
+    <ul>
+      <li><strong>Vercel Web Analytics</strong> — counts page views, visitor countries, devices (mobile/desktop), and operating systems. <strong>It does not use cookies.</strong> Visitors are identified by an anonymous hash of the request, automatically discarded after 24 hours. No personal information is collected, no cross-site tracking happens.</li>
+    </ul>
+
+    <p>If you click <strong>"Decline"</strong> on our banner, Vercel Analytics is never loaded. Period. We respect your choice.</p>
+
+    <h2>3. What we do NOT use</h2>
+    <ul>
+      <li><strong>No advertising cookies</strong> — we don't run ads.</li>
+      <li><strong>No social media tracking pixels</strong> — no Facebook Pixel, no LinkedIn Insight Tag.</li>
+      <li><strong>No Google Analytics</strong> — we chose Vercel's privacy-friendly alternative instead.</li>
+      <li><strong>No fingerprinting</strong> — we don't try to identify you by your device's unique characteristics.</li>
+      <li><strong>No third-party trackers</strong> — only Vercel Analytics, only if you accept.</li>
+    </ul>
+
+    <div class="preferences-box">
+      <h3>Your current preference</h3>
+      <p>You can change your mind anytime. Click below to update your choice — it takes effect immediately.</p>
+      <div class="pref-status unset" id="pref-status">Loading...</div>
+      <div class="pref-actions">
+        <button class="pref-btn pref-btn-decline" id="pref-decline">Decline analytics</button>
+        <button class="pref-btn pref-btn-accept" id="pref-accept">Accept analytics</button>
+      </div>
+    </div>
+
+    <h2>4. How to control cookies in your browser</h2>
+    <p>Beyond our consent banner, you can also manage cookies through your browser settings. Each browser has different controls:</p>
+    <ul>
+      <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Chrome</a></li>
+      <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener">Firefox</a></li>
+      <li><a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+      <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Edge</a></li>
+    </ul>
+
+    <h2>5. Future changes</h2>
+    <p>If we ever add new tracking tools (for example, if we decide to use Google Analytics, or add chat widgets that track behavior), we will:</p>
+    <ul>
+      <li>Update this Cookie Policy and the "Last updated" date.</li>
+      <li>Show the banner again to give you a fresh choice.</li>
+      <li>Never enable tracking without your explicit consent.</li>
+    </ul>
+
+    <h2>6. Contact</h2>
+    <p>Questions about cookies? Email <a href="mailto:hello@osyren.app">hello@osyren.app</a>.</p>
+
+    <h2>7. Related documents</h2>
+    <ul>
+      <li><a href="/privacy.html">Privacy Policy</a> — how we handle your data inside the Osyren app.</li>
+      <li><a href="/terms.html">Terms of Service</a> — the rules of using Osyren.</li>
+    </ul>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <span class="footer-tag">© 2026 Osyren</span>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/cookies.html">Cookies</a>
+      <a href="mailto:hello@osyren.app">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Preferences manager — let user change their consent from this page
+  (function() {
+    const CONSENT_KEY = 'osyren-cookie-consent';
+    const statusEl = document.getElementById('pref-status');
+    const acceptBtn = document.getElementById('pref-accept');
+    const declineBtn = document.getElementById('pref-decline');
+
+    function refresh() {
+      const consent = localStorage.getItem(CONSENT_KEY);
+      statusEl.classList.remove('accepted', 'declined', 'unset');
+      if (consent === 'accepted') {
+        statusEl.classList.add('accepted');
+        statusEl.textContent = '✓ Analytics accepted';
+      } else if (consent === 'declined') {
+        statusEl.classList.add('declined');
+        statusEl.textContent = '✗ Analytics declined';
+      } else {
+        statusEl.classList.add('unset');
+        statusEl.textContent = '— No preference set —';
+      }
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem(CONSENT_KEY, 'accepted');
+      refresh();
+    });
+
+    declineBtn.addEventListener('click', () => {
+      localStorage.setItem(CONSENT_KEY, 'declined');
+      refresh();
+    });
+
+    refresh();
+  })();
+</script>
+
+</body>
+</html>

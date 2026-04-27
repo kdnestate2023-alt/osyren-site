@@ -913,6 +913,117 @@
     .socials { justify-content: flex-start; }
   }
 
+  /* Cookie consent banner */
+  .cookie-banner {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: calc(100% - 3rem);
+    max-width: 720px;
+    background: rgba(13, 21, 39, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    box-shadow:
+      0 30px 80px -10px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(212, 164, 76, 0.06);
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(-50%) translateY(20px);
+  }
+
+  .cookie-banner.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .cookie-banner-text {
+    flex: 1;
+    min-width: 220px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .cookie-banner-text strong {
+    color: var(--text);
+    font-weight: 500;
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.01em;
+  }
+
+  .cookie-banner-text a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212, 164, 76, 0.3);
+  }
+
+  .cookie-banner-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn {
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+  }
+
+  .cookie-btn-decline {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-soft);
+  }
+
+  .cookie-btn-decline:hover {
+    color: var(--text);
+    border-color: var(--border);
+  }
+
+  .cookie-btn-accept {
+    background: var(--gold);
+    color: var(--bg-cosmic);
+  }
+
+  .cookie-btn-accept:hover {
+    background: var(--gold-bright);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 640px) {
+    .cookie-banner {
+      bottom: 1rem;
+      width: calc(100% - 2rem);
+      padding: 1.25rem 1.25rem;
+    }
+    .cookie-banner-actions {
+      width: 100%;
+      justify-content: flex-end;
+    }
+    .cookie-btn { flex: 1; max-width: 50%; }
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -1625,6 +1736,7 @@
         <a href="https://www.instagram.com/osyren.app" target="_blank" rel="noopener">Instagram</a>
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
+        <a href="/cookies.html">Cookies</a>
         <a href="mailto:hello@osyren.app">Contact</a>
       </div>
     </div>
@@ -1744,6 +1856,79 @@
       nav.style.background = 'rgba(6, 11, 24, 0.55)';
     }
   }, { passive: true });
+</script>
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-desc">
+  <div class="cookie-banner-text">
+    <strong id="cookie-title">
+      <span lang="en">A small note on privacy</span>
+      <span lang="ro">O mică notă despre confidențialitate</span>
+      <span lang="it">Una piccola nota sulla privacy</span>
+      <span lang="es">Una pequeña nota sobre privacidad</span>
+    </strong>
+    <span id="cookie-desc">
+      <span lang="en">We use anonymous analytics to understand how visitors use Osyren — no personal data, no cross-site tracking. <a href="/cookies.html">Learn more</a>.</span>
+      <span lang="ro">Folosim analitică anonimă pentru a înțelege cum e utilizat Osyren — fără date personale, fără tracking pe alte site-uri. <a href="/cookies.html">Află mai mult</a>.</span>
+      <span lang="it">Usiamo analisi anonime per capire come i visitatori usano Osyren — nessun dato personale, nessun tracciamento cross-site. <a href="/cookies.html">Scopri di più</a>.</span>
+      <span lang="es">Usamos analíticas anónimas para entender cómo los visitantes usan Osyren — sin datos personales, sin seguimiento entre sitios. <a href="/cookies.html">Más información</a>.</span>
+    </span>
+  </div>
+  <div class="cookie-banner-actions">
+    <button class="cookie-btn cookie-btn-decline" id="cookie-decline">
+      <span lang="en">Decline</span>
+      <span lang="ro">Refuz</span>
+      <span lang="it">Rifiuta</span>
+      <span lang="es">Rechazar</span>
+    </button>
+    <button class="cookie-btn cookie-btn-accept" id="cookie-accept">
+      <span lang="en">Accept</span>
+      <span lang="ro">Accept</span>
+      <span lang="it">Accetta</span>
+      <span lang="es">Aceptar</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  // Cookie consent — gates Vercel Analytics
+  (function() {
+    const CONSENT_KEY = 'osyren-cookie-consent';
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+
+    const consent = localStorage.getItem(CONSENT_KEY);
+
+    function loadAnalytics() {
+      // Vercel Web Analytics — privacy-friendly, no third-party cookies
+      if (window.__vercel_analytics_loaded) return;
+      window.__vercel_analytics_loaded = true;
+      const s = document.createElement('script');
+      s.defer = true;
+      s.src = '/_vercel/insights/script.js';
+      document.head.appendChild(s);
+    }
+
+    if (consent === 'accepted') {
+      loadAnalytics();
+    } else if (consent === null) {
+      // Show banner only if no decision yet
+      setTimeout(() => banner.classList.add('visible'), 800);
+    }
+    // If 'declined' — do nothing, no banner, no analytics
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem(CONSENT_KEY, 'accepted');
+      banner.classList.remove('visible');
+      loadAnalytics();
+    });
+
+    declineBtn.addEventListener('click', () => {
+      localStorage.setItem(CONSENT_KEY, 'declined');
+      banner.classList.remove('visible');
+    });
+  })();
 </script>
 
 </body>
